@@ -19,4 +19,4 @@ class Layer {
   }
 }
 
-export default Layer;
+module.exports = Layer;

@@ -8,7 +8,7 @@ class Neuron {
   activate() {
     let sum = 0;
 
-    for (let i = 0; i < inputs.length; i++) {
+    for (let i = 0; i < this.inputs.length; i++) {
       sum += this.inputs[i] * this.weights[i];
     }
 
@@ -18,4 +18,4 @@ class Neuron {
   }
 }
 
-export default Neuron;
+module.exports = Neuron;

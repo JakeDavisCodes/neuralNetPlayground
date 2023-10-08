@@ -4,13 +4,14 @@ class Network {
   constructor (layers) {
     this.layers = []
 
-    for (let i = 0; i < layers; i++) {
-      const layer = new Layer(layers[i], layer[i - 1] ? layer[i - 1] : undefined)
+    for (let i = 0; i < layers.length; i++) {
+      this.layers.push(new Layer(layers[i], layers[i - 1] ? layers[i - 1] : undefined))
     }
   }
 
-  forward (inputs) {
-    if (inputData.length !== this.inputLayer.neurons.length) {
+  forward (inputData) {
+    console.log(this.layers)
+    if (inputData.length !== this.layers[0].neurons.length) {
       throw new Error("Input data size does not match input layer size.");
     }
 
@@ -20,9 +21,9 @@ class Network {
     }
 
     // Cycle through all hidden layer's neurons
-    for (let i = 1; i < layers.length - 1; i++) {
+    for (let i = 1; i < this.layers.length - 1; i++) {
       for (let j = 0; j < this.layers[i].neurons.length; j++) {
-        const neuron = this.layers.neurons[j]
+        const neuron = this.layers[i].neurons[j]
 
         neuron.inputs[0] = 0
 
@@ -38,7 +39,7 @@ class Network {
     const output = [];
 
     // Calculate output layer
-    for (let i = 0; i < this.layers[this.layers.length - 1].length; i++) {
+    for (let i = 0; i < this.layers[this.layers.length - 1].neurons.length; i++) {
       const neuron = this.layers[this.layers.length - 1].neurons[i]
       neuron.inputs[0] = 0
 
@@ -52,3 +53,5 @@ class Network {
     return output;
   }
 }
+
+module.exports = Network;
